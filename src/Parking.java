@@ -9,26 +9,32 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Parking extends Observer{
+	
 	//The client receives the code when he buys something in the store
     private String code;
+	
 	//Let the system know if it has to open the gate or not
     private boolean gate;
+	
     //Used in checkCode to determine if the attribute "code" is valid
 	int counter = 0;
-    private Map<String, Boolean> map = new HashMap<String, Boolean>();
+	
+	//Each key is a parking spot and each value is the status : 
+	//false if it's a free spot and inversely if it's true
+    private Map<String, Boolean> parkingSpots = new HashMap<String, Boolean>();
+	
     public Parking()
     {
-		map.put("test", true);
-		System.out.println(map.get("test"));
 	}
+	
     //Check the barcode or QRcode given by the client to the parking system
     public Boolean checkCode()
     {
-		//Variable result is true if the barcode is valid
+		//Variable "result" is true if the barcode is valid
     	Boolean result;
 		
-		//This path depends on the location of the file containing the valid barcodes
-		//The attribute "code" is compared to the valid barcodes contained in the file located in this path
+		//The attribute "code" is compared to the valid barcodes contained 
+		//in the file located in this path
 		//The valid codes are determined and created by the store and written in this file
     	Path path =  FileSystems.getDefault().getPath(".//src//Nouveau.txt");
 		
@@ -60,7 +66,7 @@ public class Parking extends Observer{
 							}
 		);
 		
-    	//The code is valid as the same exists in the file containing the valid codes
+    	//The attribute "code" is valid as the same exists in the file containing the valid codes
     	if(this.counter == 1)
     	{
     		result = true;
@@ -82,16 +88,17 @@ public class Parking extends Observer{
     public int numberFreeSpaces()
     {
     	int freeSpaces = 0;
+		//Initialize all the variables used to analyze the parkingSpot dictionary
     	String key;
-    	Set<String> keyCollection = this.map.keySet();
+    	Set<String> keyCollection = this.parkingSpots.keySet();
     	Object[] keyArray = keyCollection.toArray();
     	int size = keyCollection.size();
     	Boolean testBool;
     	for(int i=0; i<size; i++)
     	{
     		key = (String) keyArray[i];
-    		//Get the value corresponding to each parking spot to know if it is free or not
-    		testBool = this.map.get(key);
+    		//Get the value corresponding to each parking spot to know if it's free or not
+    		testBool = this.parkingSpots.get(key);
     		if (testBool == false)
     		{
     			freeSpaces ++;
@@ -104,10 +111,10 @@ public class Parking extends Observer{
 	//Update the dictionary containing the state of each parking spot
     public void update(Map<String, Boolean> newValues)
     {
-    	this.map = newValues;
+    	this.parkingSpots = newValues;
     }
 	
-	//Used when the code attribute has been verified and is valid
+	//Used when the attribute "code" has been verified and is valid
     public void openGate()
     {
     	this.gate = true;
