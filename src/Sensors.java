@@ -26,12 +26,15 @@ public class Sensors {
 			this.map.put(key, dic.get(key));
 		}
 	}
-	public void addName(String nameSensor) {
-		this.map.put(nameSensor, false);
+	public void addName(String namePlace) {
+		this.map.put(namePlace, false);
 	}
 	
 	public Map<String, Boolean> getChange() {
 		return this.map;
+	}
+	public boolean getState(String namePlace) {
+		return this.map.get(namePlace);
 	}
 }
 		

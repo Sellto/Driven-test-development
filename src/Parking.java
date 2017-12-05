@@ -13,6 +13,7 @@ import java.io.File;
 
 public class Parking extends Observer{
     private String code;
+    private boolean gate;
     int counter = 0;
     private Map<String, Boolean> map = new HashMap<String, Boolean>();
     public Parking()
@@ -101,9 +102,9 @@ public class Parking extends Observer{
     {
     	this.map = newValues;
     }
-    public boolean openGate()
+    public void openGate()
     {
-    		return true;
+    		gate=true;
     }
 }
   
