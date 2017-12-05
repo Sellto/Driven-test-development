@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 import java.util.Scanner;
 import java.io.File;
 
-public class Parking {
+public class Parking extends Observer{
     private String code;
     int counter = 0;
     private Map<String, Boolean> map = new HashMap<String, Boolean>();
@@ -101,9 +101,9 @@ public class Parking {
     {
     	this.map = newValues;
     }
-    public void openGate()
+    public boolean openGate()
     {
-    	
+    		return true;
     }
 }
   
