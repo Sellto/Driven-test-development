@@ -4,17 +4,20 @@ import java.util.HashMap;
 
 public class Sensors {
 	
-	Map<String, Boolean> map = new HashMap<String, Boolean>();
-	int numberOfSensors=0;
+	private Map<String, Boolean> map = new HashMap<String, Boolean>();
+//	private int numberOfSensors=0;
 	
 	public Sensors(int numberOfSensors){
-		this.numberOfSensors = numberOfSensors;
+		//this.numberOfSensors = numberOfSensors;
 		String key = "";
 		// Create the dictionary according to the number of sensors.
-		for(int i=0; i < numberOfSensors; i++) {
+		for(int i=1; i <= numberOfSensors; i++) {
 			key = "Place "+ Integer.toString(i);
 			this.map.put(key, false);
 		}
+	}
+	public void changeState(String namePlace, boolean bool) {
+		this.map.put(namePlace, bool);
 	}
 	public void setState(Map<String, Boolean> dic) {
 		String key = "";

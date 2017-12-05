@@ -6,10 +6,10 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
+//import java.nio.file.Paths;
 import java.util.stream.Stream;
-import java.util.Scanner;
-import java.io.File;
+//import java.util.Scanner;
+//import java.io.File;
 
 public class Parking extends Observer{
     private String code;
@@ -26,7 +26,7 @@ public class Parking extends Observer{
 
     	Boolean result;
     	//int counter = 0;
-    	Path path =  FileSystems.getDefault().getPath(".\\src\\Nouveau.txt");
+    	Path path =  FileSystems.getDefault().getPath(".//src//Nouveau.txt");
     	//System.out.println(FileSystems.getDefault().getPath("") + "test");
     	//String currentDirectory;
     	//File file = new File(".");
@@ -52,10 +52,10 @@ public class Parking extends Observer{
 		lines.forEach(s ->  {
 							 if (s.equals(this.code)){
 							  this.counter ++;
-							  System.out.println("Yes");
+							  //System.out.println("Yes");
 							 }
 							 else {
-							  System.out.println("No");
+							 // System.out.println("No");
 							 }
 		
 							}
@@ -90,7 +90,7 @@ public class Parking extends Observer{
     		key = (String) keyArray[i];
     		
     		testBool = this.map.get(key);
-    		if (testBool == true)
+    		if (testBool == false)
     		{
     			freeSpaces ++;
     		}
@@ -104,7 +104,7 @@ public class Parking extends Observer{
     }
     public void openGate()
     {
-    		gate=true;
+    		gate = true;
     }
 }
   
