@@ -1,12 +1,13 @@
-import static org.junit.Assert.assertEquals;
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
 
+
 public class UnitTest {
-  Sensors sensors;	
+  Sensors sensors;
   Parking parking;
   Map<String,Boolean> hash = new HashMap<String, Boolean>();
 
@@ -14,7 +15,7 @@ public class UnitTest {
   void test1(){
 	  sensors=new Sensors(0);
 	  sensors.addName("Place 21");
-////	assertEquals("Place 21 doit être initialisé à false", sensors.getState("Place 21"), false);
+	  assertEquals(sensors.getState("Place 21"), false);
 	  sensors=null;
   }
   @Test
@@ -52,7 +53,7 @@ public class UnitTest {
 	sensors = new Sensors(6);
 	parking=new Parking();
 	parking.update(sensors.getChange());
-	assertEquals("Le nombre de place libre est de 6", parking.numberFreeSpaces(), 6);
+	assertEquals(parking.numberFreeSpaces(), 6);
 	sensors=null;
 	parking=null;
   }

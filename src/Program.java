@@ -1,35 +1,29 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class Program {
 	public static void main(String [] args) {
-		Map<String, Boolean> map = new HashMap<String, Boolean>();
-		map.put("place 1", false);
-		map.put("place 2", false);
-		map.put("place 3", false);
-		map.put("place 4", false);
-		map.put("place 5", false);
-		map.put("place 6", false);
-		Map<String, Boolean> dic = new HashMap<String, Boolean>();
-		dic.put("place 1", true);
-		dic.put("place 3", true);
-		dic.put("place 5", true);
-		String key = "";
-		Set<String> keyCollection = dic.keySet();
-		Object[] keyArray = keyCollection.toArray();
-		int size = keyCollection.size();
-		for(int i=0; i<size; i++) {
-			key = (String) keyArray[i];	
-			map.put(key, dic.get(key));
+		Parking mypark = new Parking();
+		Sensors sensors = new Sensors(5);
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		while(true)
+		{
+			int free = mypark.numberFreeSpaces();
+			System.out.println("Place(s) libre(s): " +free);
+			System.out.println(sensors.getChange());
+			System.out.print("Enter something:");
+			try{
+				String spot = br.readLine();
+				sensors.changeState(spot,!sensors.getState(spot));
+				mypark.update(sensors.getChange());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		key = "";
-		keyCollection = map.keySet();
-		keyArray = keyCollection.toArray();
-		size = keyCollection.size();
-		for(int i=0; i<size; i++) {
-			key = (String) keyArray[i];	
-			System.out.println("Key :" + key + " , value :" + map.get(key));
-		}
+
 	}
 }
